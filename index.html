@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Rase 0.4</title>
+    <link rel="stylesheet" href="src/scss/rase_0.4_main.scss">
+</head>
+<body>
+
+<div id="Raser" ref="root"  class="viewPort">
+    <nav id="UI" ref="UI" :class="{UIJumpDown:showUI}">
+        <div id="timeContainer">
+            <div id="timeBox">
+                <div id="timeBox_left">
+                    <div id="timeBar_left" ref="timeBar_left"></div>
+                </div>
+                <div id="timeBox_right">
+                    <div id="timeBar_right" ref="timeBar_right"></div>
+                </div>
+            </div>
+        </div>
+        <div class="headUp_bg">
+            <div id="headUp_upperSide">
+                <div id="quit">
+                    <i title="退出游戏" @click="quitAsk"></i>
+                </div>
+                <div id="restart">
+                    <i title="重排当前关卡" @click='restartMission'></i>
+                </div>
+                <div id="missionNum" :title="'当前是第'+mission.id+'关，共7关'">
+                    {{mission.title}}
+                </div>
+                <div id="soundSwitch">
+                    <i title="音效开关" :class="{'sound':!sound}" @click=toggleSound>
+                    </i>
+                </div>
+                <div id="musicSwitch">
+                    <i title="音乐开关" :class="{'music':music}" @click=toggleMusic></i>
+                </div>
+            </div>
+            <div id="headUp_lowerSide">
+                <div id="leftButton" @click="pause">暂停</div>
+                <div id="scoreBoard">{{'$'+score}}</div>
+                <div id="rightButton" :class="{flash:bombIsOn}" @mousedown="switchBomb">炸弹</div>
+            </div>
+        </div>
+    </nav>
+    <main id="gridContainer" ref="gridContainer" v-if="showGridContainer">
+        <div id="shadowBox" ref="shadowBox" :class="{fadeOutSlow:celebration}">
+            <div class="quiting" v-if="quiting" v-cloak>
+                <div class="quitingText">是否退出游戏？<br><small>游戏退出后将从第一关开始</small></div>
+                <div class="quitingBtns">
+                    <div @click="yesQuit">是</div><div @click="noQuit">否</div>
+                </div>
+            </div>
+            <div class="pausing" v-if="pausing" v-cloak>
+                游戏已暂停
+                <div class="continue" @click="unPause">继续游戏</div>
+            </div>
+            <div class="congratulation" v-if="congratulation" v-cloak>
+                <div>第{{missionNum}}关<br>完成</div>
+                <div>本关得分：{{mark}}</div>
+                <div>累计奖金：{{'$'+scoreForResult}}</div>
+                <div :class="{btn_goNextMission:true,pulse:pulse}" @click="goNextMission" @mouseenter="switchPulse" @mouseout="switchPulse"
+                     v-if="calcDone"
+                    ref="btn_goNextMission">开始下一关</div>
+            </div>
+            <div class="failed" v-if="failed" v-cloak>
+                <div class="failed_title">第{{missionNum}}关，时间到 ...</div>
+                <div class="failed_score">累计奖金：{{temp}}</div>
+                <div class="btn_tryAgain" @click="tryAgain">再试一次</div>
+            </div>
+        </div>
+        <div id="gridBox" ref="gridBox" v-show="gridBox">
+            <div v-for  = "grid in mission.gridProperties" ref = grid.id
+                 :id  = grid.id
+                 :class = grid.classList
+                 v-html = grid.innerHTML
+                 @mousedown = selectTarget>
+            </div>
+        </div>
+    </main>
+
+    <div id="celebration" v-if="celebration" v-cloak :class="{fadeInSlow:celebration}"
+            ref="celebration">
+        <div id="celebration_box">
+            <div id="celebration_title"> 恭喜！你通关了！</div>
+            <div id="celebration_mark">本关得分：{{mark}}</div>
+            <div id="celebration_score">累计奖金：{{'$'+scoreForResult}}</div>
+            <div id="celebration_poem" ref="celebration_poem"></div>
+            <div class="btn_goNextMission" @click="closeCelebration"
+                 v-if="calcDone"
+                 ref="btn_goNextMission">继 续</div>
+        </div>
+    </div>
+
+    <div id="menu" ref="menu" :class="{fade:fadeMenu}">
+        <div id="menu_bg">
+            <div id="stamp"></div>
+        </div>
+        <div id="button_startGame" @mousedown="fnHideMenu"></div>
+        <footer>
+            Last updated 2019.03.24  |  Version 2.0  Made by LiuBo
+        </footer>
+    </div>
+
+</div>
+
+<audio id="audio_click" src=""></audio>
+<audio id="audio_bgm" src="src/audio/bgm.mp3" loop="loop"></audio>
+<audio id="audio_restart" src="src/audio/restart.mp3"></audio>
+<audio id="audio_drop" src="src/audio/drop.ogg"></audio>
+<audio id="audio_rase" src="src/audio/rase.mp3"></audio>
+<audio id="audio_open" src="src/audio/open.ogg"></audio>
+<audio id="audio_fail" src="src/audio/fail.wav"></audio>
+<audio id="audio_ticking" src="src/audio/ticking.wav" loop="loop"></audio>
+<audio id="audio_score" src="src/audio/score.ogg"></audio>
+
+<canvas id="bg-road" width="800" height="600"></canvas>
+<script src="src/libs/granim.js"></script>
+<script src="src/js/main.js"></script>
+
+</body>
+</html>

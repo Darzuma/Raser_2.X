@@ -1,0 +1,59 @@
+@mixin headUp_upperSide{
+  #headUp_upperSide{
+    width: 220px;
+    height: 30px;
+    //transform: translateY(13px);
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    #quit,#restart,#soundSwitch,#musicSwitch{
+      flex-grow: 1;
+      i{
+        display: block;
+        width: 20px;height: 20px;
+        margin: 3px auto;
+        font-size: 0;
+        cursor: pointer;
+        filter: contrast(80%);
+        &:hover:not(.sound):not(.music){
+          filter: contrast(200%) drop-shadow(0px 0px 3px);
+        }
+      }
+      .sound{
+        filter: hue-rotate(300deg) saturate(3000%);
+      }
+      .music{
+        filter: hue-rotate(60deg) saturate(600%);
+      }
+    }
+    #quit{
+      i{background: url(../img/icons.png) no-repeat 0px 0px;}
+    }
+    #restart{
+      i{
+        background: url(../img/icons.png) no-repeat 0px -20px;
+      }
+    }
+    #soundSwitch{
+      i{
+        background: url(../img/icons.png) no-repeat 0px -40px;
+      }
+    }
+    #musicSwitch{
+      i{
+        background: url(../img/icons.png) no-repeat 0px -60px;
+      }
+    }
+    #missionNum{
+      text-align: center;
+      font-family: monospace;
+      font-weight: bold;
+      text-shadow:0 0 4px white;
+      letter-spacing: 4px;
+      width: 60px;
+      font-size: 15px;
+      padding: 3px 0 0 4px;
+      flex-grow: 2;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@mixin gridSizeByMission{
+  .mission_1{
+    width : 80px;
+    height: 80px;
+    background: url(../img/logos.jpg) no-repeat;
+    background-size: 78px 2184px;
+  }
+  .mission_2{
+    width : 68px;
+    height: 68px;
+    background: url(../img/logos.jpg) no-repeat;
+    background-size: 66px 1848px;
+  }
+  .mission_3{
+    width : 56px;
+    height: 56px;
+    background: url(../img/logos.jpg) no-repeat;
+    background-size: 54px 1512px;
+  }
+  .mission_4{
+    width : 53px;
+    height: 53px;
+    background: url(../img/logos.jpg) no-repeat;
+    background-size: 51px 1428px;
+  }
+  .mission_5{
+    width : 47px;
+    height: 47px;
+    background: url(../img/logos.jpg) no-repeat;
+    background-size: 45px 1260px;
+  }
+  .mission_6{
+    width : 44px;
+    height: 44px;
+    background: url(../img/logos.jpg) no-repeat;
+    background-size: 42px 1176px;
+  }
+  .mission_7{
+    width : 44px;
+    height: 44px;
+    background: url(../img/logos.jpg) no-repeat;
+    background-size: 42px 1176px;
+  }
+  .mission_8{
+    width : 44px;
+    height: 44px;
+    background: url(../img/logos.jpg) no-repeat;
+    background-size: 42px 1176px;
+  }
+}

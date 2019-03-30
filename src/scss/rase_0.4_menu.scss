@@ -1,0 +1,45 @@
+
+
+#menu{
+  position: absolute;top: 0;
+  width: 800px;height: 600px;
+  background-color: rgba(0,0,0,.5);
+  #menu_bg{
+    position: relative;
+    width: 250px;
+    height: 210px;
+    background: url("../img/menu.png") no-repeat 0 0;
+    background-size: 250px 330px;
+    margin: 72px auto;
+    transition: .3s;
+    #stamp{
+      width: 20px;height: 25px;
+      position: absolute;right: -16px;top: 42px;
+      background: url("../img/menu.png") no-repeat -230px -305px;
+      background-size: 250px 330px;
+    }
+
+  }
+
+  #button_startGame{
+    //position: absolute;
+    cursor: pointer;
+    bottom: 19px;
+    width: 200px;
+    height: 60px;
+    margin: 0 auto;
+    background: url("../img/menu.png") no-repeat 0px -210px;
+    background-size: 250px 330px;
+    &:hover{
+      background-position: 0px -270px;
+    }
+  }
+  footer{
+    position: relative;top: 125px;
+    margin-left:6px;
+    text-align: center;
+    color: #b7b7b7;
+    font-size: 13px;
+    font-family: monospace;
+  }
+}

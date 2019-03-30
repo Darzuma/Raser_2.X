@@ -1,0 +1,58 @@
+@mixin headUp_lowerSide{
+  #headUp_lowerSide{
+    margin: 10px auto;
+    width: 200px;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    #leftButton,#rightButton{
+      box-sizing: border-box;
+      color: #382800;
+      font-weight: normal;
+      font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, monospace;
+      text-shadow:0 0 20px white;
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-align: center;
+      width: 52px;height: 20px;
+      cursor: pointer;
+    }
+    #leftButton{
+      padding-left: 8px;
+      &:hover{
+        padding-left: 6px;
+        background: url(../img/buttons.png) no-repeat 0px 0px;
+      }
+    }
+    #rightButton{
+      &:hover{
+        padding-left: 2px;
+        background: url(../img/buttons.png) no-repeat -52px 0px;
+      }
+    }
+    .flash{
+      padding-left: 2px;
+      background: url(../img/buttons.png) no-repeat -52px 0px;
+      animation:flash 0.4s infinite;
+    }
+
+    #scoreBoard{
+      color: #003297;
+      font-weight: bold;
+      text-shadow: 0 0 2px white;
+      text-align: center;
+      font-size: 16px;
+      padding-left: 3px;
+      letter-spacing: 4px;
+    }
+
+  }
+
+}
+
+@keyframes flash{
+  0%{filter: brightness(1)}
+  50%{filter: brightness(1.4)}
+  100%{filter: brightness(1)}
+}
+

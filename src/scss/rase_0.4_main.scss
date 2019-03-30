@@ -1,0 +1,337 @@
+@import 'rase_0.4_mission.scss';
+@import 'rase_0.4_animation.scss';
+@import 'rase_0.4_headUp_upperSide.scss';
+@import 'rase_0.4_headUp_lowerSide.scss';
+@import 'rase_0.4_menu.scss';
+@import 'rase_0.4_celebration';
+[v-cloak]{
+  display: none;
+}
+html{
+  font-size: 1.25em;
+  font-family: x-locale-heading-primary, zillaslab, Palatino, "Palatino Linotype", x-locale-heading-secondary, "Source Han Serif SC", STZhongsong, "Source Han Sans CN", "PingFang SC", "Myriad Pro", "Hiragino Sans GB", SimHei;
+  line-height: 1.4286;
+  background-color: dimgrey;
+  overflow: hidden;
+  -moz-user-select: none;
+  user-select: none;
+  transform-origin: 0 0;
+  @media(max-width: 768px){
+    transform: scale(0.96);
+  }
+  @media(max-width: 480px){
+    transform: scale(0.6);
+  }
+  @media(max-width: 414px){
+    transform: scale(0.5175);
+  }
+  @media(max-width: 411px){
+    transform: scale(0.51375);
+  }
+  @media(max-width: 393px){
+    transform: scale(0.49125);
+  }
+  @media(max-width: 375px){
+    transform: scale(0.46875);
+  }
+  @media(max-width: 360px){
+    transform: scale(0.45);
+  }
+  body{
+    width: 800px;height:600px;
+    margin: 0 auto;
+    position: relative;//检测 gridContainer 的 offsetTop 给 canvas 计算坐标
+  }
+  #bg-road{
+    position: absolute;
+    top: 0;
+    right: 0px;
+    bottom: 0;
+    left: 0px;
+  }
+}
+
+#UI{
+  height: 115px;
+  position: relative;z-index: 100;
+  transform: translateY(-90px);
+  #timeContainer{
+    position: absolute;left: 0;right: 0;top: 60px;
+    height: 10px;
+    z-index: 5;
+    #timeBox{
+      position: relative;
+      height: 30px;
+      width: 728px;
+      margin: 0 auto;
+      #timeBox_left, #timeBox_right{
+        box-shadow: 0 0 6px black;
+        position: absolute;width: 258px;
+        box-sizing: border-box;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      #timeBox_left{
+        right: 470px;
+        #timeBar_left{
+          float: right;
+          box-sizing: border-box;
+          border-radius: 4px;
+          transition: 0.8s linear;
+          width: 100%;height: 9px;
+          background: linear-gradient(to right,#0090ff,#0004ac);
+        }
+      }
+      #timeBox_right{
+        left: 470px;
+        #timeBar_right{
+          box-sizing: border-box;
+          border-radius: 4px;
+          transition: 0.8s linear;
+          width: 100%;height: 9px;
+          background: linear-gradient(to right,#0004ac,#0090ff);
+        }
+      }
+    }
+
+  }
+  .headUp_bg{
+    position: relative;z-index: 10;
+    width: 760px;
+    height: 100px;
+    margin: 0 auto;
+    background: url(../img/bg-headUp.png) no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    padding-top: 14px;
+    @include headUp_upperSide;
+    @include headUp_lowerSide;
+
+  }
+}
+
+#gridContainer{
+  width: 100%;
+  height: 485px;
+  position: relative;//用以检测 grid 和 shadowBox 坐标，包裹 shadowBox
+  z-index: 1;
+  #shadowBox{
+    pointer-events: none;
+    position: absolute;
+    box-shadow: 0 0 14px black;
+    border-radius: 4px;
+    background: url(../img/shadowBox.png) no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    .quiting{
+      pointer-events: auto;
+      box-sizing: border-box;
+      font-size: 22px;
+      letter-spacing: 2px;
+      padding-top: 40px;
+      line-height: 40px;
+      color: white;
+      text-align: center;
+      .quitingText{
+        small{
+          font-weight: normal;
+          font-size:16px
+        }
+      }
+      .quitingBtns{
+        margin: 60px auto;
+        width: 360px;
+        display: flex;
+        color: #ffffb9;
+        justify-content: space-between;
+        div{
+          transition: .2s;
+          cursor: pointer;
+          box-sizing: border-box;
+          padding: 9px 8px 9px 10px;
+          border: 1px solid transparent;
+          border-radius: 30px;
+          width: 60px;height: 60px;
+          text-shadow: 0 0 4px black;
+          background-color: rgba(0,0,0,.4);
+          &:hover{
+            transform: scale(1.2);
+            text-shadow: 0 0 6px black;
+          }
+        }
+      }
+    }
+    .pausing{
+      padding: 50px;
+      letter-spacing: 4px;
+      text-align: center;
+      color: white;
+      .continue{
+        transition: .2s;
+        margin: 80px auto 0 auto;
+        pointer-events: auto;
+        cursor: pointer;
+        box-sizing: border-box;
+        border-radius: 30px;
+        padding: 16px;
+        color: #ffecce;
+        text-shadow: 0 0 6px black;
+        background-color: rgba(0,0,0,.5);
+        width: 180px;height: 60px;
+        &:hover{
+          transform: scale(1.15);
+          text-shadow: 0 0 6px black;
+        }
+      }
+    }
+    .congratulation{
+      padding: 40px;
+      letter-spacing: 2px;
+      color: white;
+      div:first-child{
+        letter-spacing: 6px;
+        text-align: center;
+        font-size: 30px;
+        text-shadow: 0 0 10px black;
+        margin-bottom: 30px;
+      }
+      div:nth-child(2),div:nth-child(3){
+        text-shadow: 0 0 4px black;
+        font-size: 16px;
+        box-sizing: border-box;
+        width: 300px;
+        margin: 15px auto;
+        padding-left: 80px;
+        font-family: monospace;
+      }
+      .btn_goNextMission{
+        text-align: center;
+        margin: 60px auto 0 auto;
+        pointer-events: auto;
+        cursor: pointer;
+        box-sizing: border-box;
+        border-radius: 30px;
+        padding: 10px;
+        color: #ffecce;
+        background-color: rgba(0,0,0,.4);
+        width: 180px;height: 46px;
+        &:hover{
+          transform: scale(1.2);
+          text-shadow: 0 0 6px black;
+        }
+      }
+    }
+    .celebration{
+      padding: 40px;
+      letter-spacing: 2px;
+      color: white;
+      div:first-child{
+        letter-spacing: 6px;
+        text-align: center;
+        padding-left: 20px;
+        font-size: 30px;
+        text-shadow: 0 0 10px black;
+        margin-bottom: 30px;
+      }
+      div:nth-child(2),div:nth-child(3){
+        text-shadow: 0 0 4px black;
+        font-size: 16px;
+        box-sizing: border-box;
+        width: 300px;
+        margin: 15px auto;
+        padding-left: 80px;
+        font-family: monospace;
+      }
+      .btn_goNextMission{
+        text-align: center;
+        margin: 60px auto 0 auto;
+        pointer-events: auto;
+        cursor: pointer;
+        box-sizing: border-box;
+        border-radius: 30px;
+        padding: 10px;
+        color: #ffecce;
+        background-color: rgba(0,0,0,.4);
+        width: 180px;height: 46px;
+        &:hover{
+          transform: scale(1.2);
+          text-shadow: 0 0 6px black;
+        }
+      }
+    }
+    .failed{
+      font-family: '微软雅黑';
+      letter-spacing: 2px;
+      color: white;
+      pointer-events: auto;
+      text-align: center;
+      //background-color: red;
+      .failed_title{
+        padding: 60px 0 40px 0;
+        text-align: center;
+        font-size: 24px;
+      }
+      .btn_tryAgain{
+        color: #ffecce;
+        cursor: pointer;
+        line-height: 50px;
+        background-color: rgba(0,0,0,.4);
+        width: 150px;
+        height: 50px;
+        box-sizing: border-box;
+        border-radius: 25px;
+        margin: 60px auto 0 auto;
+        &:hover{
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+  #gridBox{
+    display: flex;
+    flex-wrap:wrap;
+    font-size: 10px;
+    text-align: center;
+    .grid{
+      font-size: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+    @include gridSizeByMission;
+    .visible{
+      box-sizing: border-box;
+      background-clip: content-box;
+      border: 1px solid rgba(0,0,0,.3);
+      cursor: pointer;
+    }
+    .invisible{
+      background: none;
+    }
+    .selected {
+      &::after{
+        display: inline-block;content: '';
+        position: absolute;top: 0;left: 0;right: 0;bottom: 0;
+        box-sizing: border-box;
+        border: 3px solid deepskyblue;
+        border-radius: 4px;
+      }
+    }
+    .rased {
+      transform-origin: center;
+      cursor: auto;
+      transform: scale(0.85);
+    }
+  }
+}
+canvas{
+  position: absolute;top:0;
+  z-index: 20;
+  pointer-events: none;
+}
+#bg-road{
+  z-index: -1;
+}
+.hidden{
+  visibility: hidden;
+}
+
