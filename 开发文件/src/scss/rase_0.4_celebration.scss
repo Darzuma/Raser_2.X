@@ -7,41 +7,45 @@
   background: url("../img/bg-road.jpg");
   transition: 1s;
   #celebration_box{
+    width: 100%;height: 100%;
+    color: white;
     #celebration_title{
-      text-shadow: 0 0 22px white;
+      text-shadow: -1px 1px 4px black;
       font-weight: bold;
-      padding: 80px 0 10px 0;
-      font-size: 34px;
+      padding: 70px 0 30px 0;
+      font-size: 30px;
       text-align: center;
     }
     #celebration_mark,#celebration_score{
+      font-family: "微软雅黑";
+      letter-spacing: 2px;
       text-align: center;
       box-sizing: border-box;
       margin: 0px auto;
-      padding: 5px;
+      padding: 4px;
       width: 300px;
-      font-weight: bold;
-      //background-color: rgba(255,255,255,.4);
-      font-size: 20px;
-      text-shadow: 0 0 20px white;
+      font-weight: normal;
+      font-size: 18px;
+      text-shadow: -1px 1px 10px black;
     }
     #celebration_poem{
+      color: #00072a;
+      background-color: rgba(255,255,255,.2);
+      font-family: "微软雅黑";
       transition: .8s;
-      background-color: rgba(255,255,255,.3);
-      padding: 20px 10px 20px 10px;
-      text-shadow: 0 0 10px white;
-      font-size: 22px;
-      font-weight: bold;
+      padding: 20px 30px 20px 30px;
+      text-shadow: 0px 0px 20px white;
+      font-size: 18px;
       text-indent: 40px;
-      line-height: 40px;
-      letter-spacing: 1px;
+      line-height: 33px;
+      letter-spacing: 2px;
       width: 600px;
-      margin: 20px auto;
+      margin: 30px auto;
     }
 
     .btn_goNextMission{
       cursor: pointer;
-      margin: 130px auto 0 auto;
+      margin: 100px auto 0 auto;
       color: white;
       text-shadow: 0 0 10px black;
       text-align: center;
@@ -50,6 +54,9 @@
       background-color: rgba(0,0,0,.5);
       width: 80px;
       border-radius:30px;
+      &:hover{
+        transform: scale(1.2);
+      }
     }
 
   }
@@ -65,7 +72,7 @@
   100%{opacity: 1}
 }
 @keyframes glow{
-  0%{filter: brightness(1)}
-  50%{filter: brightness(1.15)}
-  100%{filter: brightness(1)}
+  0%{filter: brightness(1.1)}
+  50%{filter: brightness(1.25)}
+  100%{filter: brightness(1.1)}
 }

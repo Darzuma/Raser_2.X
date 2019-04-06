@@ -49,7 +49,7 @@
     <main id="gridContainer" ref="gridContainer" v-if="showGridContainer">
         <div id="shadowBox" ref="shadowBox" :class="{fadeOutSlow:celebration}">
             <div class="quiting" v-if="quiting" v-cloak>
-                <div class="quitingText">是否退出游戏？<br><small>游戏退出后将从第一关开始</small></div>
+                <div class="quitingText">是否退出游戏？<br><small>退出后分数重置，重新从第一关开始</small></div>
                 <div class="quitingBtns">
                     <div @click="yesQuit">是</div><div @click="noQuit">否</div>
                 </div>
@@ -101,7 +101,7 @@
         </div>
         <div id="button_startGame" @mousedown="fnHideMenu"></div>
         <footer>
-            Last updated 2019.03.24  |  Version 2.0  Made by LiuBo
+            Last updated 2019.04.06  |  Version 2.3  Made by LiuBo
         </footer>
     </div>
 

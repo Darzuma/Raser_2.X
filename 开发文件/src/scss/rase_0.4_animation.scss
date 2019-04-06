@@ -63,3 +63,8 @@
   50%{transform: scale(1.04)}
   100%{transform: scale(1)}
 }
+@keyframes neonLight {
+  0%{filter: contrast(0.7)}
+  50%{filter: contrast(2)}
+  100%{filter: contrast(0.7)}
+}

@@ -80,6 +80,7 @@ html{
           transition: 0.8s linear;
           width: 100%;height: 9px;
           background: linear-gradient(to right,#0090ff,#0004ac);
+          animation:neonLight 10s infinite;
         }
       }
       #timeBox_right{
@@ -90,6 +91,7 @@ html{
           transition: 0.8s linear;
           width: 100%;height: 9px;
           background: linear-gradient(to right,#0004ac,#0090ff);
+          animation:neonLight 10s infinite;
         }
       }
     }
@@ -106,7 +108,6 @@ html{
     padding-top: 14px;
     @include headUp_upperSide;
     @include headUp_lowerSide;
-
   }
 }
 

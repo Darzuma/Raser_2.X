@@ -10,7 +10,6 @@ let missionInfos = [
         patternPairs:2,
         gridProperties:'自动生成，无需设置',
         totalPairs:'自动生成，无需设置'
-        //共600分
     }),
     new Mission({
         id:2,title:'第2关',
@@ -28,7 +27,6 @@ let missionInfos = [
         patternPairs:3,
         gridProperties:'自动生成，无需设置',
         totalPairs:'自动生成，无需设置'
-        //1260
     }),
     new Mission({
         id:4,title:'第4关',
@@ -48,7 +46,6 @@ let missionInfos = [
         patternPairs:3,
         gridProperties:'自动生成，无需设置',
         totalPairs:'自动生成，无需设置'
-        //1890
     }),
     new Mission({
         id:6,title:'第6关',
@@ -57,7 +54,6 @@ let missionInfos = [
         patternPairs:4,
         gridProperties:'自动生成，无需设置',
         totalPairs:'自动生成，无需设置'
-        //2400
     }),
     new Mission({
         id:7,title:'第7关',
@@ -66,7 +62,6 @@ let missionInfos = [
         patternPairs:3,
         gridProperties:'自动生成，无需设置',
         totalPairs:'自动生成，无需设置'
-        //2400
     }),
     // new Mission({
     //     id:8,title:'第8关',

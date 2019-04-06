@@ -151,7 +151,7 @@ let Raser = new Vue({
                             grids[i].addClass('rased')
                             this.bombIsOn = false
                             this.rasedPairs ++
-                            this.seconds += this.timeAddedForPausing*1.2
+                            this.seconds += this.timeAddedForPausing
                             break
                         }
                     }
@@ -199,6 +199,7 @@ let Raser = new Vue({
         toggleSound(){this.sound = !this.sound},
         restartMission(){
             if(this.headUpAvailable){
+                this.headUpAvailable = false
                 if(this.sound){
                     Audio.restart.currentTime = 0
                     Audio.restart.play()
@@ -215,23 +216,24 @@ let Raser = new Vue({
                     Raser.startTimerIn(1500)
 
                     setTimeout(function(){
+                        Raser.headUpAvailable = true
                         Raser.frozen = false
                     },2000)
-
                 }
-                if(!this.frozen){
+
+                if(this.frozen){
                     let minus = Raser.scorePerAdd/2
                     let score = parseInt(this.score)
                     let calc = setInterval(function(){
                         if(score === Raser.scoreForResult){
                             clearInterval(calc)
-                            Raser.frozen = false
                             return false
                         }
                         score -= minus
                         Raser.score = prefixInteger(parseInt(score))
                     },50)
                 }
+
 
             }
         },
@@ -262,7 +264,7 @@ let Raser = new Vue({
                     Raser.scoreForResult += Raser.mark
                     Raser.score = prefixInteger(Raser.scoreForResult)
                     Raser.seconds ++
-                    if(Raser.seconds === Raser.timer.fulltime){
+                    if(Raser.seconds >= Raser.timer.fulltime){
                         clearTimeout(calc)
                         setTimeout(function(){
                             if(Raser.sound)
@@ -274,7 +276,7 @@ let Raser = new Vue({
             },800)
         },
         goNextMission(){
-            if(this.missionNum===8)
+            if(this.missionNum===this.missionMaxNum)
                 this.missionNum = 1
             else
                 this.missionNum ++
@@ -337,9 +339,10 @@ let Raser = new Vue({
             setTimeout(function(){
                 Raser.celebration = false
                 Raser.$refs.UI.style.top='0'
-                Raser.goNextMission()
             },1100)
-
+            setTimeout(function(){
+                Raser.goNextMission()
+            },1300)
         },
         switchPulse(){
             this.pulse = !this.pulse
@@ -412,10 +415,10 @@ let Raser = new Vue({
             this.headUpAvailable = true
         },
         pause(){
-            if(this.sound)
-                Audio.open.play()
             let time = this.timer.fulltime - this.seconds
             if( this.headUpAvailable && time > this.timeAddedForPausing + 2){
+                if(this.sound)
+                    Audio.open.play()
                 this.headUpAvailable = false
                 this.timeStopped = true
                 this.seconds += this.timeAddedForPausing
@@ -427,6 +430,11 @@ let Raser = new Vue({
 
                 this.gridBox = false
                 this.pausing = true
+            }else {
+                if(this.sound){
+                    Audio.open.currentTime = 0
+                    Audio.open.play()
+                }
             }
 
         },
@@ -458,10 +466,10 @@ let Raser = new Vue({
                 setTimeout(function(){
                     Raser.showGridContainer = true
                     Raser.startMission()
-                },1700)
+                },1000)
                 setTimeout(function(){
                     Raser.$refs.root.style.pointerEvents = 'auto'
-                },2000)
+                },2100)
             }
 
         },
